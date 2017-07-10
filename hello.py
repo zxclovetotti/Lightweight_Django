@@ -1,20 +1,6 @@
-import os
+# import os
 import sys
 
-# view.py 
-from django.http import HttpResponse
-
-def index(request):
-    return HttpResponse('Hello World')
-
-# urls.py
-from django.conf.urls import url
-
-urlpatterns = (
-    url(r'^$', index),
-)
-
-# settings.py
 from django.conf import settings
 
 settings.configure(
@@ -27,6 +13,25 @@ settings.configure(
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     },
 )
+
+from django.conf.urls import url
+from django.http import HttpResponse
+from django.core.wsgi import get_wsgi_application
+
+# view.py 
+def index(request):
+    return HttpResponse('Hello World')
+
+# urls.py
+urlpatterns = (
+    url(r'^$', index),
+)
+
+# settings.py
+# wsgi.py
+# pip3 install gunicorn
+
+application = get_wsgi_application()
 
 # Django 1.11.2 using "__main__" instead of __main__''
 if __name__ == "__main__":
