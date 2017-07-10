@@ -1,16 +1,21 @@
 import os
 import sys
 
-from django.conf.urls import url
+# view.py 
 from django.http import HttpResponse
-from django.conf import settings
 
 def index(request):
     return HttpResponse('Hello World')
 
+# urls.py
+from django.conf.urls import url
+
 urlpatterns = (
     url(r'^$', index),
 )
+
+# settings.py
+from django.conf import settings
 
 settings.configure(
     DEBUG=True,
@@ -23,6 +28,7 @@ settings.configure(
     },
 )
 
+# Django 1.11.2 using "__main__" instead of __main__''
 if __name__ == "__main__":
     from django.core.management import execute_from_command_line
 
