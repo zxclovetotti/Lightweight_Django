@@ -1,11 +1,16 @@
-# import os
+import os
 import sys
 
+# settings.py
 from django.conf import settings
 
+DEBUG = os.environ.get('DEBUG', 'on') == 'on'
+
+SECRET_KEY = os.environ.get('SECRET_KEY', os.urandom(32))
+
 settings.configure(
-    DEBUG=True,
-    SECRET_KEY='thisisthesecretkey',
+    DEBUG=DEBUG,
+    SECRET_KEY=SECRET_KEY,
     ROOT_URLCONF=__name__,
     MIDDLEWARE_CLASSES={
         'django.middleware.common.CommonMiddleware',
@@ -27,7 +32,7 @@ urlpatterns = (
     url(r'^$', index),
 )
 
-# settings.py
+
 # wsgi.py
 # pip3 install gunicorn
 
